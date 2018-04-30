@@ -1,0 +1,163 @@
+const options = [{
+  value: '管理学院',
+  label: '管理学院',
+  children: [{
+    value: '信息管理与信息系统',
+    label: '信息管理与信息系统'
+  }, {
+    value: '工商管理',
+    label: '工商管理'
+  }, {
+    value: '市场营销',
+    label: '市场营销'
+  }, {
+    value: '会计学',
+    label: '会计学'
+  }, {
+    value: '电子商务',
+    label: '电子商务'
+  },  {
+    value: '行政管理',
+    label: '行政管理'
+  }, {
+    value: '工业工程',
+    label: '工业工程'
+  },{
+    value: '工商管理类',
+    label: '工商管理类'
+  }],
+}, {
+  value: '计算机与通信工程学院',
+  label: '计算机与通信工程学院',
+  children: [{
+    value: '电子信息工程',
+    label: '电子信息工程'
+  }, {
+    value: '通信工程',
+    label: '通信工程'
+  }, {
+    value: '计算机科学与技术',
+    label: '计算机科学与技术'
+  }, {
+    value: '生物医学工程',
+    label: '生物医学工程'
+  }, {
+    value: '物联网工程',
+    label: '物联网工程'
+  }, {
+    value: '电子信息类',
+    label: '电子信息类'
+  }, {
+    value: '计算机类',
+    label: '计算机类'
+  }]
+}, {
+  value: '控制工程学院',
+  label: '控制工程学院',
+  children: [{
+    value: '过程装备与控制工程',
+    label: '过程装备与控制工程'
+  }, {
+    value: '机械工程及自动化',
+    label: '机械工程及自动化'
+  }, {
+    value: '测控技术与仪器',
+    label: '测控技术与仪器'
+  }, {
+    value: '自动化',
+    label: '自动化'
+  }, {
+    value: '机械工程',
+    label: '机械工程'
+  }, {
+    value: '车辆工程',
+    label: '车辆工程'
+  }, {
+    value: '电子工程及其自动化',
+    label: '电子工程及其自动化'
+  }, {
+    value: '机械类',
+    label: '机械类'
+  }, {
+    value: '自动化类',
+    label: '自动化类'
+  }]
+}, {
+  value: '语言学院',
+  label: '语言学院',
+  children: [{
+    value: '英语',
+    label: '英语'
+  }, {
+    value: '日语',
+    label: '日语'
+  }, {
+    value: '外国语言文学类',
+    label: '外国语言文学类'
+  }]
+}, {
+  value: '数学与统计学院',
+  label: '数学与统计学院',
+  children: [{
+    value: '数学与应用数学',
+    label: '数学与应用数学'
+  }, {
+    value: '信息与计算科学',
+    label: '信息与计算科学'
+  }, {
+    value: '统计学',
+    label: '统计学'
+  }, {
+    value: '应用统计学',
+    label: '应用统计学'
+  }, {
+    value: '数学类',
+    label: '数学类'
+  }]
+}, {
+  value: '资源与材料学院',
+  label: '资源与材料学院',
+  children: [{
+    value: '环境科学',
+    label: '环境科学'
+  }, {
+    value: '资源勘查工程',
+    label: '资源勘查工程'
+  }, {
+    value: '冶金工程',
+    label: '冶金工程'
+  }, {
+    value: '材料科学与工程',
+    label: '材料科学与工程'
+  }, {
+    value: '功能材料',
+    label: '功能材料'
+  }, {
+    value: '材料成型与控制工程',
+    label: '材料成型与控制工程'
+  }, {
+    value: '环境工程',
+    label: '环境工程'
+  }, {
+    value: '材料类',
+    label: '材料类'
+  }]
+}, {
+  value: '经济学院',
+  label: '经济学院',
+  children: [{
+    value: '经济学',
+    label: '经济学'
+  }, {
+    value: '金融学',
+    label: '金融学'
+  }, {
+    value: '国际经济与贸易',
+    label: '国际经济与贸易'
+  }, {
+    value: '经济学类',
+    label: '经济学类'
+  }]
+}]
+
+export default options

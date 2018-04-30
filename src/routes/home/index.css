@@ -1,0 +1,32 @@
+
+.main-content {
+    width: 89%;
+    margin: 20px auto;
+}
+.form-content-header-title {
+    font-size: 20px;
+    text-align: center;
+
+}
+.form-content-header-extra {
+    display: flex;
+    justify-content:space-between ;
+    margin: 20px;
+}
+.form-content-header{
+    margin: 20px 0;
+    border-bottom: 1px dashed #000;
+    padding-bottom: 10px;
+}
+.form-content-left {
+    margin: 20px;
+    flex-grow: 1;
+}
+.form-content-right {
+    margin: 20px;
+    flex-grow: 1;
+}
+.form-content .span-label {
+    margin-right: 20px;
+}
+
