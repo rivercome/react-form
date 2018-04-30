@@ -1,5 +1,15 @@
 # 基于React和Ant-design的表单
 
+## 使用
+> git clone https://github.com/rivercome/react-form.git
+
+> npm install  //安装项目依赖    
+       
+> npm run dev //开启本地预览
+
+表单部分在./src/routes/home/index.js中
+
+
 ## 脚手架
 来源于[ouxu](https://github.com/ouxu/NEUQer-FE-Kit)中
 React-Router4
@@ -69,5 +79,7 @@ export default APP
 ## 常用工具（utils文件夹下）
 
 Options.js--包括学校所有学院及专业
+
 Verify.js--包括表单验证中常见正则表达式
+
 request--封装了axios方法
