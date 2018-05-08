@@ -11,5 +11,6 @@ export default {
   postCode: /^\d{6}$/,
   age: /^(?:[1-9][0-9]?|1[01][0-9]|120)$/,
   chinese: /[\u4E00-\u9FA5\uF900-\uFA2D]/,
-  studentId: /^\d{7,8}$/
+  studentId: /^\d{7,8}$/,
+  english: /^[A-Za-z0-9]+$/
 }

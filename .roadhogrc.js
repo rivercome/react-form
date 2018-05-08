@@ -36,5 +36,6 @@ export default {
       // 'publicPath': '',
       'extraBabelPlugins': baseBabelPlugin
     }
-  }
+  },
+  publicPath: 'http://p2hfdzdsp.bkt.clouddn.com/fe'
 }

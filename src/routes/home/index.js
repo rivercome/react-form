@@ -1,16 +1,13 @@
 import React, { Component } from 'react'
 import './index.css'
 import 'antd/dist/antd.css'
-import { Button, Cascader, Col, Form, Input, message, Radio, Row } from 'antd'
+import { Button, Col, Form, Input, message, Row } from 'antd'
 import QueueAnim from 'rc-queue-anim'
 import verify from '../../utils/Verify'
-import options from '../../utils/Options'
 
-const FormItem = Form.Item
-const TextArea = Input.TextArea
+const FormItem = Form.Item;
 
 @Form.create()
-
 class HomePage extends Component {
   constructor (props) {
     super(props)
@@ -26,15 +23,15 @@ class HomePage extends Component {
     e.preventDefault()
     this.setState({loading: true})
     this.props.form.validateFieldsAndScroll((err, values) => {
-      if (err) { }
+      if (err) { console.log(err) }
       else {
         const body = {
           ...values,
-          department: values.major[0],
-          major: values.major[1]
+          // department: values.major[0],
+          // major: values.major[1]
         }
         // 处理发送的数据
-        fetch('http://hbcpc.andyhui.xin/SchoolStudent/post', {
+        fetch('url', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -63,77 +60,113 @@ class HomePage extends Component {
   }
 
   render () {
-    const {getFieldDecorator, getFieldValue} = this.props.form
+    const {getFieldDecorator} = this.props.form
     const formItemLayout = {
       labelCol: {
         xs: {span: 24},
-        sm: {span: 6},
+        sm: {span: 6}
       },
       wrapperCol: {
         xs: {span: 24},
-        sm: {span: 12},
-      },
+        sm: {span: 12}
+      }
     }
     return (
       <QueueAnim
         component='Form'
         type='top'
-        className="main-content"
+        className='main-content'
         delay={300}
         duration={600}
-
       >
-        <div className="form-content-header" key="form-content-header">
-          <div className="form-content-header-title">
+        <div className='form-content-header' key='form-content-header'>
+          <div className='form-content-header-title'>
             <br />
             校内选拔赛
           </div>
         </div>
         <Form onSubmit={this.handleSubmit.bind(this)}>
           <FormItem
-            label='姓名'
+            label='队伍中文名称'
             {...formItemLayout}
-            key="form-content-leader-name"
+            key='form-content-team-name_ch'
             hasFeedbacky
           >
-            {getFieldDecorator('name', {
+            {getFieldDecorator('team_name_zh', {
+              rules: [{
+
+              }, {
+                required: true, message: '请输入队伍中文名称'
+              }]
+            })(
+              <Input className='form-content-input' />
+            )}
+          </FormItem>
+          <FormItem
+            label='队伍英文名称'
+            {...formItemLayout}
+            key='form-content-team-english-name'
+            hasFeedbacky
+          >
+            {getFieldDecorator('team_name_en', {
+              rules: [{
+
+              }, {
+                required: true, message: '请输入队伍英文名称'
+              }]
+            })(
+              <Input className='form-content-input' />
+            )}
+          </FormItem>
+          <FormItem
+            label='队长姓名'
+            {...formItemLayout}
+            key='form-content-leader-name'
+            hasFeedbacky
+          >
+            {getFieldDecorator('stu1_name', {
               rules: [{
                 pattern: verify.chinese, message: '输入包含非中文字符！'
               }, {
-                required: true, message: '请输入姓名'
+                required: true, message: '请输入队长姓名'
               }]
             })(
-              <Input className='form-content-input' />,
+              <Input className='form-content-input' />
             )}
           </FormItem>
           <FormItem
-            label='手机号'
+            label='队员1姓名'
             {...formItemLayout}
-            key="form-content-mobile"
-            hasFeedback
+            key='form-content-leader-name-1'
+            hasFeedbacky
           >
-            {getFieldDecorator('mobile', {
+            {getFieldDecorator('stu2_name', {
               rules: [{
-                pattern: verify.mobile, message: '输入的不是有效的手机号码！'
+                pattern: verify.chinese, message: '输入包含非中文字符！'
               }, {
-                required: true, message: '请输入手机号码'
+                required: true, message: '请输入队员1姓名'
               }]
             })(
-              <Input className='form-content-input' />,
+              <Input className='form-content-input' />
             )}
           </FormItem>
           <FormItem
-            label='专业'
+            label='队员2姓名'
             {...formItemLayout}
+            key='form-content-leader-name-2'
+            hasFeedbacky
           >
-            {getFieldDecorator('major', {
+            {getFieldDecorator('stu3_name', {
               rules: [{
-                required: true, message: '请选择专业'
+                pattern: verify.chinese, message: '输入包含非中文字符！'
+              }, {
+                required: true, message: '请输入队员2姓名'
               }]
             })(
-              <Cascader options={options} placeholder="请选择专业" className='form-content-input' />
+              <Input className='form-content-input' />
             )}
           </FormItem>
+
           <FormItem
             key="form-content-footer"
             onSubmit={this.handleSubmit}
