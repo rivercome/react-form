@@ -1,12 +1,25 @@
 import React, { Component } from 'react'
 import './index.css'
 import 'antd/dist/antd.css'
-import { Button, Col, Form, Input, message, Row } from 'antd'
+import { Button, Col, Form, Input, message, Row,Cascader , Radio} from 'antd'
 import QueueAnim from 'rc-queue-anim'
 import verify from '../../utils/Verify'
 
+const RadioGroup = Radio.Group
 const FormItem = Form.Item;
-
+const gradeoptions = [{
+  value: '2017',
+  label: '2017',
+},
+  {
+    value: '2016',
+    label: '2016',
+  },
+  {
+    value: '2015',
+    label: '2015',
+  }
+]
 @Form.create()
 class HomePage extends Component {
   constructor (props) {
@@ -87,38 +100,6 @@ class HomePage extends Component {
         </div>
         <Form onSubmit={this.handleSubmit.bind(this)}>
           <FormItem
-            label='队伍中文名称'
-            {...formItemLayout}
-            key='form-content-team-name_ch'
-            hasFeedbacky
-          >
-            {getFieldDecorator('team_name_zh', {
-              rules: [{
-
-              }, {
-                required: true, message: '请输入队伍中文名称'
-              }]
-            })(
-              <Input className='form-content-input' />
-            )}
-          </FormItem>
-          <FormItem
-            label='队伍英文名称'
-            {...formItemLayout}
-            key='form-content-team-english-name'
-            hasFeedbacky
-          >
-            {getFieldDecorator('team_name_en', {
-              rules: [{
-
-              }, {
-                required: true, message: '请输入队伍英文名称'
-              }]
-            })(
-              <Input className='form-content-input' />
-            )}
-          </FormItem>
-          <FormItem
             label='队长姓名'
             {...formItemLayout}
             key='form-content-leader-name'
@@ -135,35 +116,45 @@ class HomePage extends Component {
             )}
           </FormItem>
           <FormItem
-            label='队员1姓名'
+            label='年级'
             {...formItemLayout}
-            key='form-content-leader-name-1'
-            hasFeedbacky
           >
-            {getFieldDecorator('stu2_name', {
+            {getFieldDecorator('grade', {
               rules: [{
-                pattern: verify.chinese, message: '输入包含非中文字符！'
-              }, {
-                required: true, message: '请输入队员1姓名'
+                required: true, message: '请选择年级'
               }]
             })(
-              <Input className='form-content-input' />
+              <Cascader options={gradeoptions} placeholder="请选择年级" className='form-content-input'/>
             )}
           </FormItem>
           <FormItem
-            label='队员2姓名'
+            label='手机号'
             {...formItemLayout}
-            key='form-content-leader-name-2'
-            hasFeedbacky
+            key="form-content-mobile"
+            hasFeedback
           >
-            {getFieldDecorator('stu3_name', {
+            {getFieldDecorator('mobile', {
               rules: [{
-                pattern: verify.chinese, message: '输入包含非中文字符！'
+                pattern: verify.mobile, message: '输入的不是有效的手机号码！'
               }, {
-                required: true, message: '请输入队员2姓名'
+                required: true, message: '请输入手机号码'
               }]
             })(
-              <Input className='form-content-input' />
+              <Input className='form-content-input'/>,
+            )}
+          </FormItem>
+          <FormItem
+            label='参赛组别'
+            {...formItemLayout}
+            key="form-content-team-language"
+          >
+            {getFieldDecorator('language', {
+              rules: [{required: true, message: '请选择参赛组别'}],
+            })(
+              <RadioGroup>
+                <Radio value='C/C++'>C/C++本科A组</Radio>
+                <Radio value='Java'>Java本科A组</Radio>
+              </RadioGroup>
             )}
           </FormItem>
 
