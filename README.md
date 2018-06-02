@@ -83,3 +83,7 @@ Options.js--包括学校所有学院及专业
 Verify.js--包括表单验证中常见正则表达式
 
 request--封装了axios方法
+
+## window下启动服务
+修改package.json文件中scripts下的dev配置，将其改变为
+"dev": "set BROWSER=none && set HOST=0.0.0.0 && roadhog server --port 8085",
