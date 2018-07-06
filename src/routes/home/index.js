@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import './index.css'
 import 'antd/dist/antd.css'
-import { Button, Col, Form, Input, message, Row,Cascader , Radio} from 'antd'
+import { Button, Col, Form, Input, message, Row, Cascader, Radio } from 'antd'
 import QueueAnim from 'rc-queue-anim'
 import verify from '../../utils/Verify'
+import departOptions from '../../utils/Options'
 
-const RadioGroup = Radio.Group
+const { TextArea } = Input;
+const RadioGroup = Radio.Group;
 const FormItem = Form.Item;
-const gradeoptions = [{
+const gradeOptions = [{
   value: '2017',
   label: '2017',
 },
@@ -20,6 +22,17 @@ const gradeoptions = [{
     label: '2015',
   }
 ]
+const currentOption = [{
+  value: '2018年下',
+  label: '2018年下'
+}]
+const courseOptions = [{
+  value: '算法与程序设计基础实训',
+  label: '算法与程序设计基础实训'
+}, {
+  value: '工程创新实践实训',
+  label: '工程创新实践实训'
+}]
 @Form.create()
 class HomePage extends Component {
   constructor (props) {
@@ -40,11 +53,14 @@ class HomePage extends Component {
       else {
         const body = {
           ...values,
-          // department: values.major[0],
-          // major: values.major[1]
+          current_year: '2018年下',
+          department: values.major[0],
+          major: values.major[1],
+          course: values.course[0],
+          grade: values.grade[0],
         }
         // 处理发送的数据
-        fetch('url', {
+        fetch('http://syb.andyhui.xin/student/post', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -54,6 +70,7 @@ class HomePage extends Component {
           return res.json()
         }).then((json) => {
           // 也可以直接对返回的res数据操作,看后端给的啥数据格式
+          console.log(json)
           message.success('success')
           this.setState({submitted: true})
         }).catch((e) => {
@@ -95,17 +112,17 @@ class HomePage extends Component {
         <div className='form-content-header' key='form-content-header'>
           <div className='form-content-header-title'>
             <br />
-            校内选拔赛
+            实验班报名
           </div>
         </div>
         <Form onSubmit={this.handleSubmit.bind(this)}>
           <FormItem
-            label='队长姓名'
+            label='姓名'
             {...formItemLayout}
-            key='form-content-leader-name'
+            key='form-content-name'
             hasFeedbacky
           >
-            {getFieldDecorator('stu1_name', {
+            {getFieldDecorator('name', {
               rules: [{
                 pattern: verify.chinese, message: '输入包含非中文字符！'
               }, {
@@ -113,6 +130,20 @@ class HomePage extends Component {
               }]
             })(
               <Input className='form-content-input' />
+            )}
+          </FormItem>
+          <FormItem
+            label='性别'
+            {...formItemLayout}
+            key='form-content-sex'
+          >
+            {getFieldDecorator('sex', {
+              rules: [{required: true, message: '请选择参赛组别'}],
+            })(
+              <RadioGroup>
+                <Radio value='男'>男</Radio>
+                <Radio value='女'>女</Radio>
+              </RadioGroup>
             )}
           </FormItem>
           <FormItem
@@ -124,7 +155,41 @@ class HomePage extends Component {
                 required: true, message: '请选择年级'
               }]
             })(
-              <Cascader options={gradeoptions} placeholder="请选择年级" className='form-content-input'/>
+              <Cascader options={gradeOptions} placement="bottomCenter" placeholder="请选择年级"  />
+            )}
+          </FormItem>
+          <FormItem
+            label='学号'
+            {...formItemLayout}
+            key='form-content-stuId'
+          >
+            {getFieldDecorator('stu_num', {
+              rules: [{required: true, message: '请输入学号'}],
+            })(
+              <Input className='form-content-input' />,
+            )}
+          </FormItem>
+          <FormItem
+            label='学院'
+            {...formItemLayout}
+            key='form-content-department'
+          >
+            {getFieldDecorator('major', {
+              rules: [{required: true, message: '请输入学院'}],
+            })(
+              <Cascader options={departOptions} placement="bottomCenter" placeholder="请选择学院" />
+            )}
+          </FormItem>
+          <FormItem
+            label='选修课程'
+            {...formItemLayout}
+          >
+            {getFieldDecorator('course', {
+              rules: [{
+                required: true, message: '请选择课程'
+              }]
+            })(
+              <Cascader options={courseOptions} placement="bottomCenter" placeholder="请选择课程"  />
             )}
           </FormItem>
           <FormItem
@@ -140,24 +205,23 @@ class HomePage extends Component {
                 required: true, message: '请输入手机号码'
               }]
             })(
-              <Input className='form-content-input'/>,
+              <Input className='form-content-input' />,
             )}
           </FormItem>
           <FormItem
-            label='参赛组别'
+            label='自我介绍'
             {...formItemLayout}
-            key="form-content-team-language"
+            key="form-content-introduce"
+            hasFeedback
           >
-            {getFieldDecorator('language', {
-              rules: [{required: true, message: '请选择参赛组别'}],
+            {getFieldDecorator('introduce', {
+              rules: [{
+                required: true, message: '请输入自我介绍'
+              }]
             })(
-              <RadioGroup>
-                <Radio value='C/C++'>C/C++本科A组</Radio>
-                <Radio value='Java'>Java本科A组</Radio>
-              </RadioGroup>
+              <TextArea rows={4} />
             )}
           </FormItem>
-
           <FormItem
             key="form-content-footer"
             onSubmit={this.handleSubmit}
@@ -167,7 +231,7 @@ class HomePage extends Component {
                 <Button
                   type='primary'
                   htmlType='submit'
-                  className='form-button-1'
+                  className='form-button'
                   loading={this.state.loading}
                   disabled={this.state.submitted}
                 >
@@ -176,8 +240,8 @@ class HomePage extends Component {
                 <Button
                   type="ghost"
                   onClick={this.handleReset}
-                  className='form-button-2'
-                  style={{marginLeft: 110}}
+                  className='form-button'
+                  style={{marginLeft: 18}}
                 >
                   重置
                 </Button>
