@@ -16,7 +16,7 @@ const App = () => {
       <Switch>
         <Redirect exact from='/' to='/home' />
         <Route path='/home' component={Home} />
-        <Route path='/async' component={AsyncDemo} />
+        <Route path='/export' component={AsyncDemo} />
         <Route path='/404' component={NotFound} />
         <Redirect from='*' to='/404' />
       </Switch>

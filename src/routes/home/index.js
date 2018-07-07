@@ -53,7 +53,7 @@ class HomePage extends Component {
       else {
         const body = {
           ...values,
-          current_year: '2018年下',
+          current_year: '2018年下半年',
           department: values.major[0],
           major: values.major[1],
           course: values.course[0],

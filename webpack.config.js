@@ -1,5 +1,5 @@
 const QiniuPlugin = require('qiniu-webpack-plugin')
-const {qiniu} = require('./pushConfig')
+// const {qiniu} = require('./pushConfig')
 
 module.exports = function (webpackConfig, env) {
   if (env !== 'production') {} else {
