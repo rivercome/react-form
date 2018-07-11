@@ -17,7 +17,7 @@ class AsyncDemo extends Component {
     // console.log(this.state)
     if (this.state.value === 'neuqAcm111') {
       const link = 'neuqAcm111'
-      window.location.href = 'http://syb.andyhui.xin/student/export?password=neuqAcm111&start_at=2018-07-04 00:00:00&end_at=2018-07-10 23:59:59'
+      window.location.href = 'http://camp.andyhui.xin/student/export?password=neuqAcm111'
      }
     else {
       message.error('密码错误')
